@@ -1,0 +1,17 @@
+@model cbsStudents.Models.Entities.Event
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    @await Html.PartialAsync("_PartialDeleteDetails", Model) 
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.EventId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

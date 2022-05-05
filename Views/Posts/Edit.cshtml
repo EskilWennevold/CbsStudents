@@ -1,0 +1,39 @@
+@model cbsStudents.Models.Entities.Post
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Post</h1>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            @await Html.PartialAsync("_PartialPost", Model)
+            <input type="hidden" asp-for="PostId" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@foreach (var comment in Model.Comments)
+{
+    <div class="row">
+        <div class="col-md-4">
+            @comment.User.Email
+        </div>
+        <div class="col-md-4">
+            @comment.Url
+        </div>
+    </div>
+}
+
+
+
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
