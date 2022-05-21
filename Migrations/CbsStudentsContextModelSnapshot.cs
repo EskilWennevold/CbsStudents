@@ -15,7 +15,7 @@ namespace cbsStudents.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
 
             modelBuilder.Entity("cbsStudents.Models.Entities.Event", b =>
                 {
@@ -38,9 +38,46 @@ namespace cbsStudents.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("EventId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Event");
+
+                    b.HasData(
+                        new
+                        {
+                            EventId = 20,
+                            Date = new DateTime(2022, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventName = "Fredags Bar",
+                            Location = "Guldbar",
+                            Status = 1,
+                            Text = "Første fredags bar kom glad og kom tørstig",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            EventId = 22,
+                            Date = new DateTime(2022, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventName = "Rustur",
+                            Location = "Gilleleje Campingplads",
+                            Status = 1,
+                            Text = "Her kommer vi",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            EventId = 21,
+                            Date = new DateTime(2022, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventName = "Fredags Bar",
+                            Location = "Guldbar",
+                            Status = 1,
+                            Text = "Anden fredags bar kom glad og kom tørstig",
+                            UserId = "1"
+                        });
                 });
 
             modelBuilder.Entity("cbsStudents.Models.Entities.Post", b =>
@@ -79,7 +116,26 @@ namespace cbsStudents.Migrations
                             Created = new DateTime(2015, 12, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0,
                             Text = "I'll be good waifu",
-                            Title = "Marry me please desu"
+                            Title = "Happy wife happy life",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            PostId = 22,
+                            Created = new DateTime(2016, 12, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 0,
+                            Text = "I'll be good waifu",
+                            Title = "Marry me please desu",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            PostId = 23,
+                            Created = new DateTime(2022, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 0,
+                            Text = "If you have seen the recent news you might realise that Hollywood is scary",
+                            Title = "Johnny Deep is finally happy",
+                            UserId = "2"
                         });
                 });
 
@@ -109,9 +165,71 @@ namespace cbsStudents.Migrations
                     b.HasData(
                         new
                         {
-                            CommentId = 2,
+                            CommentId = 1,
                             PostId = 20,
-                            Url = "https://www.youtube.com/watch?v=XNwoowL2u24"
+                            Url = "https://www.youtube.com/watch?v=XNwoowL2u24",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            CommentId = 2,
+                            PostId = 22,
+                            Url = "Lorem ipsum exvacatum",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            CommentId = 3,
+                            PostId = 23,
+                            Url = "Never say never",
+                            UserId = "2"
+                        });
+                });
+
+            modelBuilder.Entity("EventComment", b =>
+                {
+                    b.Property<int>("EventCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("EventCommentId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EventComment");
+
+                    b.HasData(
+                        new
+                        {
+                            EventCommentId = 1,
+                            EventId = 20,
+                            Text = "Det bliver fedt",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            EventCommentId = 3,
+                            EventId = 20,
+                            Text = "Det bliver mega fedt",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            EventCommentId = 2,
+                            EventId = 21,
+                            Text = "Det bliver bedre end den første",
+                            UserId = "1"
                         });
                 });
 
@@ -165,6 +283,36 @@ namespace cbsStudents.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IdentityUserClaim");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ec135cf6-e017-48ea-8a08-3173208834e2",
+                            Email = "chrk@kea.dk",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEFbJPCZlPkVtnUupjX3VBcaNEePrK8HF7ovzXQ7h2LfDABbuwsvJzxNoMEhNG6+iFA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "bc38326f-d52e-404b-8bc4-f155f2590858",
+                            TwoFactorEnabled = false,
+                            UserName = "chrk@kea.dk"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "32ba65aa-c268-4b0e-84f9-7f5c18cb9148",
+                            Email = "test@kea.dk",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEGD7jrsyeka64mjvJTcn2jgXcEz2aIuyOGIHWWojcvPNuPorHjRDitGHwzjs2hBw+Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0c3aef63-8347-4688-a828-f9e2f96a0a9d",
+                            TwoFactorEnabled = false,
+                            UserName = "test@kea.dk"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -185,6 +333,15 @@ namespace cbsStudents.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IdentityUserClaim<string>");
+                });
+
+            modelBuilder.Entity("cbsStudents.Models.Entities.Event", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("cbsStudents.Models.Entities.Post", b =>
@@ -211,6 +368,28 @@ namespace cbsStudents.Migrations
                     b.Navigation("Post");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("EventComment", b =>
+                {
+                    b.HasOne("cbsStudents.Models.Entities.Event", "Event")
+                        .WithMany("Comments")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("cbsStudents.Models.Entities.Event", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("cbsStudents.Models.Entities.Post", b =>

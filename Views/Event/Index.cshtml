@@ -1,4 +1,7 @@
-@model IEnumerable<cbsStudents.Models.Entities.Event>
+@model IEnumerable<Event>
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -9,51 +12,30 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EventName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Text)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
-            </td>
-        </tr>
+<div class="container">
+    <div class="row">
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 mb-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.EventName)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Text) </p>
+                @if (UserManager.GetUserId(User).Equals(item.UserId))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
+                    <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                }
+                else
+                {
+                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
+                }
+            </div>
+        </div>
+    </div>
+
+    
 }
-    </tbody>
-</table>
+    </div>
+</div>

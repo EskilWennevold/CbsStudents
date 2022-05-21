@@ -52,12 +52,11 @@ button.accept-policy {
   height: 100%;
 }
 .main-wrapper {
-  height: 100vh;  
+  height: 100vh; 
+   
 }
 
 .main-row{
   height: 100%;
 }
-.main-bar{
-  background-color: ghostwhite;
-}
+

@@ -1,6 +1,12 @@
-@model cbsStudents.Models.Entities.Event
+@model Event
 
 <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EventName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EventName)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Text)
         </dt>

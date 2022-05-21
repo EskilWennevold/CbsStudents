@@ -1,4 +1,4 @@
-@model cbsStudents.Models.Entities.Event
+@model Event
 
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -22,9 +22,19 @@
             <span asp-validation-for="Date" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <input asp-for="Status" type="submit" value="Draft" class="btn btn-primary" />
+            <label asp-for="Status" class="control-label"></label>
+            <select asp-for="Status" class ="form-control">
+                <option value="Draft">DRAFT</option>
+                <option value="Published">PUBLISHED</option>
+            </select>
         </div>
-        <div class="form-group">
-            <input asp-for="Status" type="submit" value="Published" class="btn btn-primary" />
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="submit" class="btn btn-primary" value="Save"/>
+            </div> |
+            <div class="col-sm-3">
+                <button asp-action="Index" class="btn btn-primary">Cancel</button>
+            </div>
         </div>
+
             

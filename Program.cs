@@ -4,11 +4,11 @@ using CbsStudents.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+//using cbsStudents.Areas.Identity.Data;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 
 

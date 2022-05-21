@@ -4,6 +4,8 @@ using CbsStudents.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace cbsStudents.Controllers;
 
@@ -11,8 +13,8 @@ namespace cbsStudents.Controllers;
 public class PostsController : Controller
 {
     private CbsStudentsContext _context;
-
     private readonly UserManager<IdentityUser> _userManager;
+    
     public PostsController(CbsStudentsContext context, UserManager<IdentityUser> userManager){
         this._userManager = userManager;
         this._context = context;
@@ -38,7 +40,6 @@ public class PostsController : Controller
     
     public IActionResult Create()
     {
-
         return View();
     }
 

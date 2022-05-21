@@ -1,7 +1,9 @@
-@model cbsStudents.Models.Entities.Event
+@model Event
 
 @{
     ViewData["Title"] = "Edit";
+    ViewBag.EventId = Model.EventId;
+    
 }
 
 <h1>Edit</h1>
@@ -17,9 +19,37 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+@* 
+Make it possible for a user to post a comment on this event
+ *@
+<br>
+
+<div class="row">
+    <div class="col-sm-2">
+        <a class="nav-link text-white px-2 btn btn-primary" asp-area="" asp-route-id="@Model.EventId" asp-controller="EventComment" asp-action="Create">
+            Comment
+        </a>
+    </div>
 </div>
+
+
+@* 
+Makes it possiple to view all the comments that has been posted on this event
+ *@
+@foreach (var comment in Model.Comments)
+{
+    <div class="row">
+        <div class="col-md-12">
+            @comment.User
+        </div>
+        <div class="col-md-12">
+            @comment.Text
+        </div>
+        <a asp-controller="EventComment" asp-action="Edit" asp-route-id="@comment.EventCommentId">Edit</a> 
+        <a asp-controller="EventComment" asp-action="Details" asp-route-id="@comment.EventCommentId">Details</a> 
+        <a asp-controller="EventComment" asp-action="Delete" asp-route-id="@comment.EventCommentId">Delete</a>
+    </div>
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,21 +12,28 @@ using cbsStudents.Models.Entities;
 
 namespace cbsStudents.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         private readonly CbsStudentsContext _context;
 
-        public EventController(CbsStudentsContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public EventController(CbsStudentsContext context, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+            this._userManager = userManager;
+            this._context = context;
+
         }
 
+        [AllowAnonymous]
         // GET: Event
         public async Task<IActionResult> Index()
         {
             return View(await _context.Event.ToListAsync());
         }
 
+        [AllowAnonymous]
         // GET: Event/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -58,6 +67,8 @@ namespace cbsStudents.Controllers
         {
             if (ModelState.IsValid)
             {
+                IdentityUser user = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
+                @event.UserId = user.Id;
                 _context.Add(@event);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -72,13 +83,13 @@ namespace cbsStudents.Controllers
             {
                 return NotFound();
             }
+            var post = await _context.Event.Include(x => x.User).Include(x => x.Comments).ThenInclude(x => x.User).FirstOrDefaultAsync(x => x.EventId == id);
 
-            var @event = await _context.Event.FindAsync(id);
-            if (@event == null)
+            if (post == null)
             {
                 return NotFound();
             }
-            return View(@event);
+            return View(post);
         }
 
         // POST: Event/Edit/5
