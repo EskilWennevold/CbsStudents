@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace cbsStudents.Migrations
 {
     [DbContext(typeof(CbsStudentsContext))]
-    [Migration("20220512090702_Init")]
-    partial class Init
+    [Migration("20220522135035_UserRoleAgain")]
+    partial class UserRoleAgain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,14 +221,14 @@ namespace cbsStudents.Migrations
                         },
                         new
                         {
-                            EventCommentId = 3,
+                            EventCommentId = 2,
                             EventId = 20,
                             Text = "Det bliver mega fedt",
                             UserId = "2"
                         },
                         new
                         {
-                            EventCommentId = 2,
+                            EventCommentId = 3,
                             EventId = 21,
                             Text = "Det bliver bedre end den første",
                             UserId = "1"
@@ -291,13 +291,13 @@ namespace cbsStudents.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d959c2b2-832c-4223-8442-b8d14af64e89",
+                            ConcurrencyStamp = "04054166-6868-442f-bdb0-9070b943dae5",
                             Email = "chrk@kea.dk",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEPoqCI2iZap49hoH52yN6cL791SdyACQgOML8L91QtnHbpf7PH+na00KZbnFSh0Z6w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIda4LVhVi1sOIVcNeJZ1BXEMk+mOvH136xo1RbnqYtiE/pB86X4O0uV9UPPsEm3oQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "91a86242-51a9-4688-9eac-b88192070dd4",
+                            SecurityStamp = "f78419d1-310a-4531-85f9-1cb916c8b0d2",
                             TwoFactorEnabled = false,
                             UserName = "chrk@kea.dk"
                         },
@@ -305,13 +305,13 @@ namespace cbsStudents.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "db239212-a406-4aba-bf1f-743a1a9d904f",
+                            ConcurrencyStamp = "2202bc70-b5cc-48e2-9b1f-b098da280b55",
                             Email = "test@kea.dk",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEMDWhJoN/hQ+qGVBq/xkBwPJnjF73qTYoZZDpKmhR/GgbQuH78flPIz5Vs+m5w9eQw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAkwUdo+i/ixdGIedo85BLBpm2J49TUyXXS9gqDqdEOfsveO6b8BF/o06wZBGDZIGA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e0049763-9074-4376-8af1-a2191df8fea5",
+                            SecurityStamp = "1320eb5b-dc24-406b-84d1-80417a6f2cd3",
                             TwoFactorEnabled = false,
                             UserName = "test@kea.dk"
                         });

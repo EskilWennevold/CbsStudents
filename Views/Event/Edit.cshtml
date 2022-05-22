@@ -1,5 +1,8 @@
 @model Event
 
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @{
     ViewData["Title"] = "Edit";
     ViewBag.EventId = Model.EventId;
@@ -36,20 +39,28 @@ Make it possible for a user to post a comment on this event
 @* 
 Makes it possiple to view all the comments that has been posted on this event
  *@
-@foreach (var comment in Model.Comments)
-{
-    <div class="row">
-        <div class="col-md-12">
-            @comment.User
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+            <div class="card-body p-4">
+                @foreach (var comment in Model.Comments)
+                {      
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p>@comment.Text</p>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <p class="small mb-0 ms-2">@comment.User</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
         </div>
-        <div class="col-md-12">
-            @comment.Text
-        </div>
-        <a asp-controller="EventComment" asp-action="Edit" asp-route-id="@comment.EventCommentId">Edit</a> 
-        <a asp-controller="EventComment" asp-action="Details" asp-route-id="@comment.EventCommentId">Details</a> 
-        <a asp-controller="EventComment" asp-action="Delete" asp-route-id="@comment.EventCommentId">Delete</a>
     </div>
-}
+</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

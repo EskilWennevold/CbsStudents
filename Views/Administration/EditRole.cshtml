@@ -1,0 +1,42 @@
+@model EditRoleVm
+
+
+<h1>Edit Role</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Id" class="control-label"></label>
+        <input asp-for="Id" class="form-control" disabled />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoleName" class="control-label"></label>
+        <input asp-for="RoleName" class="form-control" />
+        <span asp-validation-for="RoleName" class="text-danger"></span>
+    </div>
+    <div class="col-sm-3">
+        <input type="submit" class="btn btn-primary" value="Save"/>
+        <a asp-action="ListRoles" class="btn btn-primary">Back</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5>List Of Users In This Role</h5>
+        </div>
+        <div class="card-body">
+            @if(Model.Users.Any())
+            {
+                foreach (var user in Model.Users)
+                {
+                    <h5 class="card-title">@user</h5>
+                }
+            } else
+            {
+                <h5 class="card-title">None At The Moment</h5>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="EditUsersInRole" asp-controller="administration" class="btn btn-primary" style="width:auto" asp-route-roleId="@Model.Id">Add or Remove Users</a>
+        </div>
+    </div>
+</form>

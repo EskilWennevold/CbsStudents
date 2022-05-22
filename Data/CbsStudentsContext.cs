@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using cbsStudents.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
 namespace CbsStudents.Data
 {
-    public class CbsStudentsContext : DbContext
+    public class CbsStudentsContext : IdentityDbContext
     {
         public CbsStudentsContext (DbContextOptions<CbsStudentsContext> options)
             : base(options)
@@ -19,6 +20,7 @@ namespace CbsStudents.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Comment>()
             .HasOne(p => p.Post)
             .WithMany(b => b.Comments);
@@ -86,13 +88,14 @@ namespace CbsStudents.Data
             );
             builder.Entity<IdentityUserClaim<string>>().HasKey(p => new {p.Id});
         }
+       
+        
+        //Database Sets
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
         public DbSet<IdentityUser> IdentityUserClaim {get; set;}
-
+        public DbSet<IdentityRole> IdentityRoleClaim {get; set;}
         public DbSet<cbsStudents.Models.Entities.Event> Event { get; set; }
-
         public DbSet<EventComment> EventComment { get; set; }
 
         

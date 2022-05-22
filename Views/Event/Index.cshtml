@@ -12,6 +12,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <div class="container">
     <div class="row">
 @foreach (var item in Model)
@@ -21,17 +22,20 @@
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.EventName)</h5>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.Text) </p>
-                @if (UserManager.GetUserId(User).Equals(item.UserId))
+                @if (SignInManager.IsSignedIn(User))
                 {
-                    <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
-                    <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                    @if (UserManager.GetUserId(User).Equals(item.UserId))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
+                        <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
+                    }   
                 }
-                else
-                {
-                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
-                }
-            </div>
+                </div>
         </div>
     </div>
 

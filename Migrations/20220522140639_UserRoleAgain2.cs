@@ -4,7 +4,7 @@
 
 namespace cbsStudents.Migrations
 {
-    public partial class newRedirect : Migration
+    public partial class UserRoleAgain2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,14 +13,14 @@ namespace cbsStudents.Migrations
                 keyColumn: "Id",
                 keyValue: "1",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "ec135cf6-e017-48ea-8a08-3173208834e2", "AQAAAAEAACcQAAAAEFbJPCZlPkVtnUupjX3VBcaNEePrK8HF7ovzXQ7h2LfDABbuwsvJzxNoMEhNG6+iFA==", "bc38326f-d52e-404b-8bc4-f155f2590858" });
+                values: new object[] { "eb3c1a83-c1c5-4952-a29d-337513e7fbb5", "AQAAAAEAACcQAAAAEPS8vIlks8QI6UjuNZwo3oK9+iadDe2nU2RLsDncHyb6Va4q9Xj/2lLg5CGnTMD1GQ==", "89743672-bf8b-4bd2-bd60-aa8db12e4d74" });
 
             migrationBuilder.UpdateData(
                 table: "IdentityUserClaim",
                 keyColumn: "Id",
                 keyValue: "2",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "32ba65aa-c268-4b0e-84f9-7f5c18cb9148", "AQAAAAEAACcQAAAAEGD7jrsyeka64mjvJTcn2jgXcEz2aIuyOGIHWWojcvPNuPorHjRDitGHwzjs2hBw+Q==", "0c3aef63-8347-4688-a828-f9e2f96a0a9d" });
+                values: new object[] { "f518ee56-14cf-4270-8b47-66f330ec9658", "AQAAAAEAACcQAAAAEL/3fljqafktn23GD8/ALyX3q3jMO9i+8tjxYNyHhbiQvCpKjczzQCN89Vz7Guwkvw==", "b06977b8-e11d-470c-b21f-e2535c9afaf8" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -30,14 +30,14 @@ namespace cbsStudents.Migrations
                 keyColumn: "Id",
                 keyValue: "1",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "d959c2b2-832c-4223-8442-b8d14af64e89", "AQAAAAEAACcQAAAAEPoqCI2iZap49hoH52yN6cL791SdyACQgOML8L91QtnHbpf7PH+na00KZbnFSh0Z6w==", "91a86242-51a9-4688-9eac-b88192070dd4" });
+                values: new object[] { "04054166-6868-442f-bdb0-9070b943dae5", "AQAAAAEAACcQAAAAEIda4LVhVi1sOIVcNeJZ1BXEMk+mOvH136xo1RbnqYtiE/pB86X4O0uV9UPPsEm3oQ==", "f78419d1-310a-4531-85f9-1cb916c8b0d2" });
 
             migrationBuilder.UpdateData(
                 table: "IdentityUserClaim",
                 keyColumn: "Id",
                 keyValue: "2",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "db239212-a406-4aba-bf1f-743a1a9d904f", "AQAAAAEAACcQAAAAEMDWhJoN/hQ+qGVBq/xkBwPJnjF73qTYoZZDpKmhR/GgbQuH78flPIz5Vs+m5w9eQw==", "e0049763-9074-4376-8af1-a2191df8fea5" });
+                values: new object[] { "2202bc70-b5cc-48e2-9b1f-b098da280b55", "AQAAAAEAACcQAAAAEAkwUdo+i/ixdGIedo85BLBpm2J49TUyXXS9gqDqdEOfsveO6b8BF/o06wZBGDZIGA==", "1320eb5b-dc24-406b-84d1-80417a6f2cd3" });
         }
     }
 }

@@ -149,12 +149,12 @@ namespace cbsStudents.Migrations
             migrationBuilder.InsertData(
                 table: "IdentityUserClaim",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "d959c2b2-832c-4223-8442-b8d14af64e89", "chrk@kea.dk", true, false, null, null, null, "AQAAAAEAACcQAAAAEPoqCI2iZap49hoH52yN6cL791SdyACQgOML8L91QtnHbpf7PH+na00KZbnFSh0Z6w==", null, false, "91a86242-51a9-4688-9eac-b88192070dd4", false, "chrk@kea.dk" });
+                values: new object[] { "1", 0, "e2353b7a-ea46-4e35-bf48-41da364fc4fd", "chrk@kea.dk", true, false, null, null, null, "AQAAAAEAACcQAAAAEI4OnhUu6x4iFLaIvVqb3cnItgomSyoyd8mItNuhs1dUe4EA09qH4bV0JZy9HCMsUw==", null, false, "b48aa3d2-455a-4c4a-9173-72bbcc9adb49", false, "chrk@kea.dk" });
 
             migrationBuilder.InsertData(
                 table: "IdentityUserClaim",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "2", 0, "db239212-a406-4aba-bf1f-743a1a9d904f", "test@kea.dk", true, false, null, null, null, "AQAAAAEAACcQAAAAEMDWhJoN/hQ+qGVBq/xkBwPJnjF73qTYoZZDpKmhR/GgbQuH78flPIz5Vs+m5w9eQw==", null, false, "e0049763-9074-4376-8af1-a2191df8fea5", false, "test@kea.dk" });
+                values: new object[] { "2", 0, "dd3e94ab-8ebd-4401-ba4a-093a80a0d4bf", "test@kea.dk", true, false, null, null, null, "AQAAAAEAACcQAAAAEJbCZXakQujDcFFHNmucBNcfumc4JQtJpOkmkOZLIutixh3x8Y+5QhmCda6vJVObWQ==", null, false, "e5af8775-0066-4f30-8af6-428fc55106bf", false, "test@kea.dk" });
 
             migrationBuilder.InsertData(
                 table: "Event",
@@ -209,12 +209,12 @@ namespace cbsStudents.Migrations
             migrationBuilder.InsertData(
                 table: "EventComment",
                 columns: new[] { "EventCommentId", "EventId", "Text", "UserId" },
-                values: new object[] { 2, 21, "Det bliver bedre end den første", "1" });
+                values: new object[] { 2, 20, "Det bliver mega fedt", "2" });
 
             migrationBuilder.InsertData(
                 table: "EventComment",
                 columns: new[] { "EventCommentId", "EventId", "Text", "UserId" },
-                values: new object[] { 3, 20, "Det bliver mega fedt", "2" });
+                values: new object[] { 3, 21, "Det bliver bedre end den første", "1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_PostId",

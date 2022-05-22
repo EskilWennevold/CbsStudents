@@ -10,12 +10,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 builder.Services.AddDbContext<CbsStudentsContext>(options =>
         options.UseSqlite(builder.Configuration.GetConnectionString("CbsStudentsContext")));
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<CbsStudentsContext>();builder.Services.AddDbContext<CbsStudentsContext>(options =>
+
+builder.Services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<CbsStudentsContext>();
+
+builder.Services.AddRazorPages();
+    
+builder.Services.AddDbContext<CbsStudentsContext>(options =>
     options.UseSqlServer("CbsStudentsContext"));
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -42,5 +45,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
 
 app.Run();
