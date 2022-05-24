@@ -50,11 +50,12 @@ button.accept-policy {
 .sidebar{
   padding-left: 40px;
   height: 100%;
+  border-right: 1px solid gray;
 }
 .main-wrapper {
   height: 100vh; 
-   
 }
+
 
 .main-row{
   height: 100%;

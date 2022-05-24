@@ -2,9 +2,11 @@ using cbsStudents.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using CbsStudents.Data;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace cbsStudents.Controllers;
+
+[Authorize(Roles ="Admin")]
 public class AdministrationController : Controller
 {
     private readonly CbsStudentsContext _context;

@@ -19,8 +19,11 @@ namespace cbsStudents.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public EventController(CbsStudentsContext context, UserManager<IdentityUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public EventController(RoleManager<IdentityRole> roleManager,CbsStudentsContext context, UserManager<IdentityUser> userManager)
         {
+            this._roleManager = roleManager;
             this._userManager = userManager;
             this._context = context;
 
@@ -28,9 +31,19 @@ namespace cbsStudents.Controllers
 
         [AllowAnonymous]
         // GET: Event
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string SearchString = "")
         {
-            return View(await _context.Event.ToListAsync());
+            if(SearchString == null)
+        {
+            SearchString = "";
+        }
+        var events = from e in _context.Event select e;
+        events = events.Where(x => x.EventName.Contains(SearchString)).Include(y => y.User);
+        
+        ViewBag.SearchString = SearchString;
+        var vm = new EventIndexVm{Events = events.ToList(), SearchString = SearchString};
+        
+        return View(vm);
         }
 
         [AllowAnonymous]
@@ -42,8 +55,8 @@ namespace cbsStudents.Controllers
                 return NotFound();
             }
 
-            var @event = await _context.Event
-                .FirstOrDefaultAsync(m => m.EventId == id);
+            var @event = await _context.Event.Include(x => x.User).Include(x => x.Comments).ThenInclude(x => x.User).FirstOrDefaultAsync(x => x.EventId == id);
+
             if (@event == null)
             {
                 return NotFound();
@@ -83,13 +96,13 @@ namespace cbsStudents.Controllers
             {
                 return NotFound();
             }
-            var post = await _context.Event.Include(x => x.User).Include(x => x.Comments).ThenInclude(x => x.User).FirstOrDefaultAsync(x => x.EventId == id);
+            var @event = await _context.Event.Include(x => x.User).Include(x => x.Comments).ThenInclude(x => x.User).FirstOrDefaultAsync(x => x.EventId == id);
 
-            if (post == null)
+            if (@event == null)
             {
                 return NotFound();
             }
-            return View(post);
+            return View(@event);
         }
 
         // POST: Event/Edit/5

@@ -1,4 +1,4 @@
-@model IEnumerable<Event>
+@model EventIndexVm
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -7,35 +7,47 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Events</h1>
 
+@if (SignInManager.IsSignedIn(User))
+{
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
+    
+}
 
 <div class="container">
+    <form asp-controller="Event" asp-action="Index">
+        <p>
+            Event name: <input type="text" name="SearchString" value = "@ViewBag.SearchString"/>
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
     <div class="row">
-@foreach (var item in Model)
+@foreach (var item in Model.Events)
 {
     <div class="col-lg-4 mb-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card card-styling">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.EventName)</h5>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.Text) </p>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    @if (UserManager.GetUserId(User).Equals(item.UserId))
+                    @if (UserManager.GetUserId(User).Equals(item.UserId) || User.IsInRole("Admin"))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a>
-                        <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
-                        <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.EventId" class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-primary">Details</a> 
+                        <a asp-action="Delete" asp-route-id="@item.EventId" class="btn btn-danger">Delete</a>
                     }
                     else
                     {
-                        <a asp-action="Details" asp-route-id="@item.EventId">Details</a> 
+                        <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-primary">Details</a> 
                     }   
+                } else {
+                    <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-primary">Details</a> 
                 }
-                </div>
+            </div>
         </div>
     </div>
 

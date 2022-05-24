@@ -13,14 +13,18 @@ using System.Security.Claims;
 
 namespace cbsStudents.Controllers
 {
+    [Authorize]
     public class EventCommentController : Controller
     {
         private readonly CbsStudentsContext _context;
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public EventCommentController(CbsStudentsContext context, UserManager<IdentityUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public EventCommentController(RoleManager<IdentityRole> roleManager,CbsStudentsContext context, UserManager<IdentityUser> userManager)
         {
+            this._roleManager = roleManager;
             this._userManager = userManager;
             this._context = context;
 
@@ -33,6 +37,7 @@ namespace cbsStudents.Controllers
             return View(await cbsStudentsContext.ToListAsync());
         }
 
+        [AllowAnonymous]
         // GET: EventComment/Details/5
         public async Task<IActionResult> Details(int? id)
         {

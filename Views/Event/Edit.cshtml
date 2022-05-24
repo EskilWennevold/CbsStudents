@@ -27,41 +27,6 @@ Make it possible for a user to post a comment on this event
  *@
 <br>
 
-<div class="row">
-    <div class="col-sm-2">
-        <a class="nav-link text-white px-2 btn btn-primary" asp-area="" asp-route-id="@Model.EventId" asp-controller="EventComment" asp-action="Create">
-            Comment
-        </a>
-    </div>
-</div>
-
-
-@* 
-Makes it possiple to view all the comments that has been posted on this event
- *@
-<div class="row d-flex justify-content-center">
-    <div class="col-md-8 col-lg-6">
-        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
-            <div class="card-body p-4">
-                @foreach (var comment in Model.Comments)
-                {      
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <p>@comment.Text</p>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center">
-                                <p class="small mb-0 ms-2">@comment.User</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
