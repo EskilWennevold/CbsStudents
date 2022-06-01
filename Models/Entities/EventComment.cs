@@ -7,6 +7,7 @@ public class EventComment
 {
     public int EventCommentId { get; set; }
     [MinLength(1)]
+    [Required]
     public string Text { get; set; }
 
     public int EventId { get; set; }
