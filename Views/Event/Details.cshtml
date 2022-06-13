@@ -16,9 +16,9 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-1">
+    @* <div class="col-sm-1">
         <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.EventId">Edit</a>
-    </div> |
+    </div> | *@
     <div class="col-sm-1">
         <a asp-action="Index" class="btn btn-primary">Back</a>
     </div>
@@ -52,7 +52,7 @@
                             </div>
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                @if (UserManager.GetUserId(User).Equals(comment.UserId) || User.IsInRole("Admin"))
+                                @if (UserManager.GetUserId(User).Equals(comment.UserId) || User.IsInRole("Admin") || UserManager.GetUserId(User).Equals(Model.UserId))
                                 {
                                     <a asp-controller="EventComment" asp-action="Edit" asp-route-id="@comment.EventCommentId" class="btn btn-primary">Edit</a>
                                     <a asp-controller="EventComment" asp-action="Details" asp-route-id="@comment.EventCommentId" class="btn btn-primary">Details</a> 

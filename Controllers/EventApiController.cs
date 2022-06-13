@@ -32,16 +32,35 @@ namespace cbsStudents.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Event>> GetEvent(int id)
         {
-            var @event = await _context.Event.FindAsync(id);
+            // var @event = await _context.Event.FindAsync(id);
+            var @event1 = await _context.Event.Include(x => x.Comments).ThenInclude(x => x.User).Include(x => x.User).FirstOrDefaultAsync(x => x.EventId == id );
 
-            if (@event == null)
+            if (@event1 == null)
             {
                 return NotFound();
             }
 
-            return @event;
+            return @event1;
         }
+        // GET: api/EventApi/Custom/5
+        [HttpGet("Custom/{id}")]
+        public async Task<ActionResult<Object>> GetEventCustom(int id)
+        {
+            // var @event = await _context.Event.FindAsync(id);
+            var @event1 =from p in _context.Event select new {
+                EventId = p.EventId,
+                EventName = p.EventName,
+                Date = p.Date
+            };
+            @event1 = @event1.Where(x => x.EventId == id);
 
+            if (@event1 == null)
+            {
+                return NotFound();
+            }
+
+            return await @event1.ToListAsync();
+        }
         // PUT: api/EventApi/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

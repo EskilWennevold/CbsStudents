@@ -17,8 +17,10 @@
                 <input asp-for="Text" class="form-control" />
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="UserId" value="@ViewBag.UserId"/>
-            <input type="hidden" asp-for="EventId" value="@ViewBag.EventId"/>
+            <input type="hidden" asp-for="UserId" value="@Model.UserId"/>
+            <input type="hidden" asp-for="EventId" value="@Model.EventId"/>
+            @* <input type="hidden" asp-for="UserId" value="@ViewBag.UserId"/>
+            <input type="hidden" asp-for="EventId" value="@ViewBag.EventId"/> *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

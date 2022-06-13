@@ -62,11 +62,14 @@ namespace cbsStudents.Controllers
         
         public IActionResult Create(int id)
         {
-            
-            ViewBag.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewBag.EventId = id;
+            EventComment vm = new EventComment{
+                EventId = id,
+                UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+            // ViewBag.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // ViewBag.EventId = id;
 
-            return View();
+            return View(vm);
         }
 
         // POST: EventComment/Create
@@ -80,11 +83,11 @@ namespace cbsStudents.Controllers
             {
                 _context.Add(eventComment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Event");            
+                return RedirectToAction("Details","Event",new {id = eventComment.EventId});            
             }
             ViewData["EventId"] = new SelectList(_context.Event, "EventId", "EventId", eventComment.EventId);
             ViewData["UserId"] = new SelectList(_context.IdentityUserClaim, "Id", "Id", eventComment.UserId);
-            return RedirectToAction("Index","Event"); 
+            return RedirectToAction("Details","Event", new {id = eventComment.EventId}); 
         }
 
         // GET: EventComment/Edit/5
@@ -135,7 +138,7 @@ namespace cbsStudents.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index","Event");
+                return RedirectToAction("Details","Event", new {id = eventComment.EventId});
             }
             ViewData["EventId"] = new SelectList(_context.Event, "EventId", "EventId", eventComment.EventId);
             ViewData["UserId"] = new SelectList(_context.IdentityUserClaim, "Id", "Id", eventComment.UserId);

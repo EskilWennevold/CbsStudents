@@ -30,6 +30,7 @@ public class PostsController : Controller
         }
         var posts = from p in _context.Posts select p;
         posts = posts.Where(x => x.Title.Contains(SearchString)).Include(y => y.User);
+        posts = posts.OrderBy(x => x.Created);
         
         ViewBag.SearchString = SearchString;
         var vm = new PostIndexVm{Posts = posts.ToList(), SearchString = SearchString};
