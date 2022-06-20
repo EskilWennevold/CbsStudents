@@ -37,6 +37,16 @@ public class PostsController : Controller
         
         return View(vm);
     }
+    public IActionResult Test()
+    {
+        var vm = from p in _context.Posts select new MyTestVm{
+            Title = p.Title,
+            Text = p.Text
+        };
+        vm = vm.OrderByDescending(p => p.Title.Length);
+       
+        return View(vm);
+    }
     
     
     public IActionResult Create()

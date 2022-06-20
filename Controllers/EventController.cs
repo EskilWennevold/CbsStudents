@@ -163,9 +163,16 @@ namespace cbsStudents.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            IdentityUser user = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            
             var @event = await _context.Event.FindAsync(id);
-            _context.Event.Remove(@event);
-            await _context.SaveChangesAsync();
+            if(user == @event.User || User.IsInRole("Admin")){
+                _context.Event.Remove(@event);
+                await _context.SaveChangesAsync();
+            } else {
+                return Problem("You idiot");
+            }
+            
             return RedirectToAction(nameof(Index));
         }
 

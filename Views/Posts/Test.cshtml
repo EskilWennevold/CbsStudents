@@ -1,3 +1,7 @@
-<h1>Who is here?</h1>
+@model IEnumerable<cbsStudents.Models.Entities.MyTestVm>
 
-@ViewBag.Jesper
+@foreach (var item in Model)
+{
+    <h1>@item.Text</h1>
+    <h1>@item.Title</h1>
+}
